@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CS 343: Project 4 - Animatrix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body style="padding-top:15px; padding-bottom:15px;">
+  <div class="container">
+
+    <div class="page-header">
+        <h1>Project 4 - Animatrix // CS 343, UW Stout</h1>
+    </div>
+
+    <div class="row">
+      <!-- The Main WebGL rendering window -->
+      <div class="col-md-9">
+
+        <!-- The Three.js rendering element will go here -->
+        <div class="relative" id="GLWidget"></div>
+
+        <hr style="margin:10px 0">
+
+        <!-- Controls that appear under the rendering window -->
+        <div class="form-inline">
+          <!-- Current Frame indicator -->
+          <input id="frameSlider" type="text" style="width: 70%;" />
+
+          <span>&nbsp;&nbsp;&nbsp;</span>
+
+          <!-- Play/Pause Button -->
+          <button class="btn btn-default" id="playPauseButton" type="button"><span class="glyphicon glyphicon-play"></span></button>
+
+          <!-- Save Keyframe Button -->
+          <button class="btn btn-default" id="setKeyframeButton" type="button" disabled>&#128273;</button>
+
+          <span class="pull-right">
+            <!-- Reset view Button -->
+            <button class="btn btn-default" id="resetViewButton" type="button">Reset View</button>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Column for the GUI controls -->
+      <div class="col-md-3">
+
+        <!-- Load a new Shape -->
+        <label for="animLoad">Load an Animation</label>
+        <select class="form-control" id="animLoad" style="width:100%;">
+          <option value="select">Select animation to load ...</option>
+          <option disabled>──────────</option>
+          <option value="HumanoidWalk">Humanoid Walk Animation</option>
+          <option value="HumanoidOther">Humanoid Other Animation</option>
+        </select>
+
+        <br />
+
+        <!-- The list of shapes in the scene -->
+        <label>Mesh Object Tree</label>
+        <div class="scroll-container rounded-border">
+          <div id="meshListTree"></div>
+        </div>
+
+        <!-- Controls for transformation -->
+        <label>Transformation</label>
+        <div class="form-group rounded-border">
+          <fieldset id="transformSet">
+            <label for="xTranslate" class="control-label">Translation:</label><br>
+            <div class="form-inline">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="xTranslate" id="xTranslate">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="yTranslate" id="yTranslate">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="zTranslate" id="zTranslate">
+            </div>
+
+            <hr style="margin:10px 0">
+
+            <label for="xScale" class="control-label">Scale:</label>
+            <div class="form-inline">
+              <input type="number" class="form-control shape-trans-control" value="1.0" step="0.1" min="-9999" max="9999" name="xScale" id="xScale">
+              <input type="number" class="form-control shape-trans-control" value="1.0" step="0.1" min="-9999" max="9999" name="yScale" id="yScale">
+              <input type="number" class="form-control shape-trans-control" value="1.0" step="0.1" min="-9999" max="9999" name="zScale" id="zScale">
+            </div>
+
+            <hr style="margin:10px 0">
+
+            <label for="xPivot" class="control-label">Rotation Pivot:</label>
+            <div class="form-inline">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="xPivot" id="xPivot">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="yPivot" id="yPivot">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="0.1" min="-9999" max="9999" name="zPivot" id="zPivot">
+            </div>
+
+            <br />
+
+            <label for="xScale" class="control-label">Rotation Angles:</label>
+            <div class="form-inline">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="1.0" min="-1080" max="1080" name="xAngle" id="xAngle">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="1.0" min="-1080" max="1080" name="yAngle" id="yAngle">
+              <input type="number" class="form-control shape-trans-control" value="0.0" step="1.0" min="-1080" max="1080" name="zAngle" id="zAngle">
+            </div>
+
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="dist/vendor.bundle.js"></script>
+  <script src="dist/bundle.js"></script>
+
+</body>
+
+</html>
